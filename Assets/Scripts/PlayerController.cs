@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     private int jumpCount = 0;
     private bool isGrounded = false;
     private bool isDead = false;
-
     private Rigidbody2D playerRigidboody;
     private Animator animator;
     private AudioSource playerAudio;
@@ -20,7 +19,7 @@ public class PlayerController : MonoBehaviour
         playerAudio = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         if(isDead)
@@ -42,7 +41,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag =="Dead" && isDead)
+        if(other.tag =="Dead" && !isDead)
         {
             Die();
         }
@@ -55,6 +54,8 @@ public class PlayerController : MonoBehaviour
         playerAudio.Play();
         playerRigidboody.velocity = Vector2.zero;
         isDead = true;
+
+        GameManager.instance.OnPlayerDead();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
