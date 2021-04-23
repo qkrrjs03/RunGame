@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        if(Input.GetMouseButtonDown(0) && jumpCount < 2)
+        if(Input.GetMouseButtonDown(0) && jumpCount < 200)
         {
             jumpCount++;
             playerRigidboody.velocity = Vector2.zero;
